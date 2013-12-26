@@ -1119,22 +1119,22 @@ config TOUCHSCREEN_GT9XX
 
           If unsure, say N.
 
-config TOUCHSCREEN_TOUCHX_BASE
-        bool "Enable kernel support for predictive touch module"
-        default y
-        help
-          This enables kernel support for the predictive touch module.
-	  If unsure here, say Y.
 
-config TOUCHSCREEN_TOUCHX
-        tristate "Enable predictive touch module"
+config TOUCHSCREEN_SWEEP2WAKE
+        tristate "Sweep2Wake for touchscreens"
+        select TOUCHSCREEN_PREVENT_SLEEP
         default n
-	depends on TOUCHSCREEN_TOUCHX_BASE
-        help
-          This enables the predictive touch module. If unsure here, say M.
 
-          To compile this driver as a module, choose M here: the
-          module will be called touchx.
+config TOUCHSCREEN_DOUBLETAP2WAKE
+        tristate "DoubleTap2Wake for touchscreens"
+        select TOUCHSCREEN_PREVENT_SLEEP
+        default n
+
+config TOUCHSCREEN_PREVENT_SLEEP
+        bool "Inihibit sleep on modified touchscreen drivers"
+        default n
+        help
+          This disables the sleep function of modified touchscreen drivers.
 
 source "drivers/input/touchscreen/gt9xx/Kconfig"
 
