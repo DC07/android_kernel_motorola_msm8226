@@ -1913,6 +1913,12 @@ config MSM_DEVFREQ_CPUBW
 	  agnostic interface to so that some of the devfreq governors can be
 	  shared across SoCs.
 
+config CPU_UNDERCLOCK
+	bool "enable CPU underclocking option"
+	default n
+	help
+	  Enable CPU underclocking to 96Mhz
+
 config MSM_AVS_HW
 	bool "Enable Adaptive Voltage Scaling (AVS)"
 	default n
