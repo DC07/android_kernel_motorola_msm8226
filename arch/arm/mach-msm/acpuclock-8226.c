@@ -41,6 +41,8 @@ static struct msm_bus_paths bw_level_tbl_8226[] = {
 	[5] = BW_MBPS(2128), /* At least 266 MHz on bus. */
 	[6] = BW_MBPS(3200), /* At least 400 MHz on bus. */
 	[7] = BW_MBPS(4264), /* At least 533 MHz on bus. */
+	[8] = BW_MBPS(4528), /* At least 566 MHz on bus. */
+	[9] = BW_MBPS(4800), /* At least 600 MHz on bus. */
 };
 
 static struct msm_bus_paths bw_level_tbl_8610[] = {
@@ -70,20 +72,52 @@ static struct clkctl_acpu_speed acpu_freq_tbl_8226_1p1[] = {
 	{ 1,  998400, ACPUPLL, 5, 0,   CPR_CORNER_12,  0, 7 },
 	{ 1, 1094400, ACPUPLL, 5, 0,   CPR_CORNER_12,  0, 7 },
 	{ 0, 1190400, ACPUPLL, 5, 0,   CPR_CORNER_12,  0, 7 },
+	{ 1, 1190400, ACPUPLL, 5, 0,   CPR_CORNER_7,   0, 7 },
+	{ 1, 1305600, ACPUPLL, 5, 0,   CPR_CORNER_8,   0, 8 },
+	{ 1, 1344000, ACPUPLL, 5, 0,   CPR_CORNER_9,   0, 8 },
+	{ 1, 1401600, ACPUPLL, 5, 0,   CPR_CORNER_10,  0, 9 },
+	{ 1, 1497600, ACPUPLL, 5, 0,   CPR_CORNER_11,  0, 9 },
+	{ 1, 1593600, ACPUPLL, 5, 0,   CPR_CORNER_12,  0, 9 },
 	{ 0 }
 };
 
 static struct clkctl_acpu_speed acpu_freq_tbl_8226_1p2[] = {
 #ifdef CPU_UNDERCLOCK
 	{ 1,  192000, ACPUPLL, 5, 2,   CPR_CORNER_2,    0, 3 },
+	{ 1,  300000, PLL0,    4, 2,   1140000,    1140000, 4 },
+	{ 1,  384000, ACPUPLL, 5, 2,   1140000,    1140000, 4 },
+	{ 1,  600000, PLL0,    4, 0,   1140000,    1140000, 6 },
+	{ 1,  787200, ACPUPLL, 5, 0,   1140000,    1140000, 6 },
+	{ 1,  998400, ACPUPLL, 5, 0,   1150000,    1150000, 7 },
+	{ 1, 1094400, ACPUPLL, 5, 0,   1150000,    1150000, 7 },
+	{ 1, 1190400, ACPUPLL, 5, 0,   1150000,    1150000, 7 },
+	{ 1, 1305600, ACPUPLL, 5, 0,   1280000,    1280000, 8 },
+	{ 1, 1344000, ACPUPLL, 5, 0,   1280000,    1280000, 8 },
+	{ 1, 1401600, ACPUPLL, 5, 0,   1280000,    1280000, 9 },
+	{ 1, 1497600, ACPUPLL, 5, 0,   1280000,    1280000, 9 },
+	{ 1, 1593600, ACPUPLL, 5, 0,   1280000,    1280000, 9 },
+	{ 0 }
+};
+/* Carlos Jesús (KLOZZ OR TEAMMEX@XDA-Developers)	
+ * TEAMMEX NOTE: for _USERSPACE_VOLTAGE_CONTROL_
+ *
+ * VOLTAGE Added SOME CONFIGS so this need more test I add lowe voltage 
+ * Because Stock uses 1140mV I added FOR test 1280mV in Higher Freq
+ * But if work fine I make DOWN to 1150mv for Baterry saver
+ * Maybe this fix the Issue on Some Kernel Tweakers :)
+ */
+#else
+static struct clkctl_acpu_speed acpu_freq_tbl_8226_1p2[] = {
+#ifdef CONFIG_CPU_UNDERCLOCK
+	{ 1,  192000, ACPUPLL, 5, 2,   CPR_CORNER_2,   0, 4 },
 #endif
 	{ 1,  300000, PLL0,    4, 2,   CPR_CORNER_2,    0, 4 },
 	{ 1,  384000, ACPUPLL, 5, 2,   CPR_CORNER_2,    0, 4 },
 	{ 1,  600000, PLL0,    4, 0,   CPR_CORNER_4, 0, 6 },
 	{ 1,  787200, ACPUPLL, 5, 0,   CPR_CORNER_4, 0, 6 },
 	{ 1,  998400, ACPUPLL, 5, 0,   CPR_CORNER_12,  0, 7 },
-	{ 1, 1094400, ACPUPLL, 5, 0,   CPR_CORNER_12,  0, 7 },
-	{ 1, 1190400, ACPUPLL, 5, 0,   CPR_CORNER_12,  0, 7 },
+	{ 1, 1094400, ACPUPLL, 5, 0,   CPR_CORNER_12,  0, 8 },
+	{ 1, 1190400, ACPUPLL, 5, 0,   CPR_CORNER_12,  0, 9 },
 	{ 0 }
 };
 
@@ -97,10 +131,10 @@ static struct clkctl_acpu_speed acpu_freq_tbl_8226_1p4[] = {
 	{ 1,  787200, ACPUPLL, 5, 0,   CPR_CORNER_4, 0, 6 },
 	{ 1,  998400, ACPUPLL, 5, 0,   CPR_CORNER_12,  0, 7 },
 	{ 1, 1094400, ACPUPLL, 5, 0,   CPR_CORNER_12,  0, 7 },
-	{ 1, 1190400, ACPUPLL, 5, 0,   CPR_CORNER_12,  0, 7 },
-	{ 1, 1305600, ACPUPLL, 5, 0,   CPR_CORNER_12,  0, 7 },
-	{ 1, 1344000, ACPUPLL, 5, 0,   CPR_CORNER_12,  0, 7 },
-	{ 1, 1401600, ACPUPLL, 5, 0,   CPR_CORNER_12,  0, 7 },
+	{ 1, 1190400, ACPUPLL, 5, 0,   CPR_CORNER_12,  0, 8 },
+	{ 1, 1305600, ACPUPLL, 5, 0,   CPR_CORNER_12,  0, 8 },
+	{ 1, 1344000, ACPUPLL, 5, 0,   CPR_CORNER_12,  0, 9 },
+	{ 1, 1401600, ACPUPLL, 5, 0,   CPR_CORNER_12,  0, 9 },
 	{ 0 }
 };
 
@@ -108,6 +142,7 @@ static struct clkctl_acpu_speed acpu_freq_tbl_8226_1p6[] = {
 #ifdef CPU_UNDERCLOCK
 	{ 1,  192000, ACPUPLL, 5, 2,   CPR_CORNER_2,    0, 3 },
 #endif
+<<<<<<< HEAD
 	{ 1,  300000, PLL0,    4, 2,   CPR_CORNER_2,    0, 4 },
 	{ 1,  384000, ACPUPLL, 5, 2,   CPR_CORNER_2,    0, 4 },
 	{ 1,  600000, PLL0,    4, 0,   CPR_CORNER_4, 0, 6 },
@@ -120,6 +155,18 @@ static struct clkctl_acpu_speed acpu_freq_tbl_8226_1p6[] = {
 	{ 1, 1401600, ACPUPLL, 5, 0,   CPR_CORNER_10,  0, 7 },
 	{ 1, 1497600, ACPUPLL, 5, 0,   CPR_CORNER_11,  0, 7 },
 	{ 1, 1593600, ACPUPLL, 5, 0,   CPR_CORNER_12,  0, 7 },
+	{ 1,  300000, PLL0,    4, 2,   CPR_CORNER_2,   0, 4 },
+	{ 1,  384000, ACPUPLL, 5, 2,   CPR_CORNER_2,   0, 4 },
+	{ 1,  600000, PLL0,    4, 0,   CPR_CORNER_4,   0, 6 },
+	{ 1,  787200, ACPUPLL, 5, 0,   CPR_CORNER_4,   0, 6 },
+	{ 1,  998400, ACPUPLL, 5, 0,   CPR_CORNER_5,   0, 7 },
+	{ 1, 1094400, ACPUPLL, 5, 0,   CPR_CORNER_6,   0, 7 },
+	{ 1, 1190400, ACPUPLL, 5, 0,   CPR_CORNER_7,   0, 8 },
+	{ 1, 1305600, ACPUPLL, 5, 0,   CPR_CORNER_8,   0, 8 },
+	{ 1, 1344000, ACPUPLL, 5, 0,   CPR_CORNER_9,   0, 9 },
+	{ 1, 1401600, ACPUPLL, 5, 0,   CPR_CORNER_10,  0, 9 },
+	{ 1, 1497600, ACPUPLL, 5, 0,   CPR_CORNER_11,  0, 9 },
+	{ 1, 1593600, ACPUPLL, 5, 0,   CPR_CORNER_12,  0, 9 },
 	{ 0 }
 };
 
