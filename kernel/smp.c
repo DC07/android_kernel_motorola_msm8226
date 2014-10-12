@@ -12,6 +12,7 @@
 #include <linux/gfp.h>
 #include <linux/smp.h>
 #include <linux/cpu.h>
+#include <asm/relaxed.h>
 
 #ifdef CONFIG_USE_GENERIC_SMP_HELPERS
 static struct {
@@ -127,8 +128,8 @@ void __init call_function_init(void)
 static void csd_lock_wait(struct call_single_data *data)
 {
 	set_csd_lock_waiting_flag();
-	while (data->flags & CSD_FLAG_LOCK)
-		cpu_relax();
+	while (cpu_relaxed_read_short(&data->flags) & CSD_FLAG_LOCK)
+		cpu_read_relax();
 	clear_csd_lock_waiting_flag();
 }
 
