@@ -1021,7 +1021,7 @@ static int kgsl_iommu_init_sync_lock(struct kgsl_mmu *mmu)
  *
  * Return - int - number of commands.
  */
-inline unsigned int kgsl_iommu_sync_lock(struct kgsl_mmu *mmu,
+static inline unsigned int kgsl_iommu_sync_lock(struct kgsl_mmu *mmu,
 						unsigned int *cmds)
 {
 	struct kgsl_device *device = mmu->device;
@@ -1091,7 +1091,7 @@ inline unsigned int kgsl_iommu_sync_lock(struct kgsl_mmu *mmu,
  *
  * Return - int - number of commands.
  */
-inline unsigned int kgsl_iommu_sync_unlock(struct kgsl_mmu *mmu,
+static inline unsigned int kgsl_iommu_sync_unlock(struct kgsl_mmu *mmu,
 					unsigned int *cmds)
 {
 	struct kgsl_device *device = mmu->device;
