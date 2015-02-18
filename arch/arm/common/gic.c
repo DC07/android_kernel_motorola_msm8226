@@ -254,12 +254,17 @@ static void gic_show_resume_irq(struct gic_chip_data *gic)
 	}
 	raw_spin_unlock(&irq_controller_lock);
 
-	wakeup_source_gic_cleanup();
-	for (i = find_first_bit(pending, gic->max_irq);
-	     i < gic->max_irq;
-	     i = find_next_bit(pending, gic->max_irq, i+1)) {
-		wakeup_source_gic_add_irq(i + gic->irq_offset);
-		log_wakeup_reason(i + gic->irq_offset);
+	for (i = find_first_bit(pending, gic->gic_irqs);
+		i < gic->gic_irqs;
+		i = find_next_bit(pending, gic->gic_irqs, i+1)) {
+		struct irq_desc *desc = irq_to_desc(i + gic->irq_offset);
+		const char *name = "null";
+
+		if (desc == NULL)
+			name = "stray irq";
+		else if (desc->action && desc->action->name)
+			name = desc->action->name;
+
 	}
 }
 
