@@ -86,13 +86,19 @@ static bool tick_check_broadcast_device(struct clock_event_device *curdev,
  */
 void tick_install_broadcast_device(struct clock_event_device *dev)
 {
-+	if (!tick_check_broadcast_device(cur, dev))
+
+	struct clock_event_device *cur = tick_broadcast_device.evtdev;
+
+	if (!tick_check_broadcast_device(cur, dev))
+
 		return;
 
 	if (!try_module_get(dev->owner))
 		return;
 
 	clockevents_exchange_device(cur, dev);
+	if (cur)
+		cur->event_handler = clockevents_handle_noop;
 	tick_broadcast_device.evtdev = dev;
 	if (!cpumask_empty(tick_broadcast_mask))
 		tick_broadcast_start_periodic(dev);
@@ -549,7 +555,15 @@ void tick_check_oneshot_broadcast(int cpu)
 	if (cpumask_test_cpu(cpu, tick_broadcast_oneshot_mask)) {
 		struct tick_device *td = &per_cpu(tick_cpu_device, cpu);
 
-		clockevents_set_mode(td->evtdev, CLOCK_EVT_MODE_ONESHOT);
+		/*
+		 * We might be in the middle of switching over from
+		 * periodic to oneshot. If the CPU has not yet
+		 * switched over, leave the device alone.
+		 */
+		if (td->mode == TICKDEV_MODE_ONESHOT) {
+			clockevents_set_mode(td->evtdev,
+					     CLOCK_EVT_MODE_ONESHOT);
+		}
 	}
 }
 
