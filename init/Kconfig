@@ -634,7 +634,7 @@ config CGROUP_TIMER_SLACK
 
 config CGROUP_DYNAMIC_TIMER_SLACK
 	bool "Dynamic management of the minimal timer slack value during suspend/resume"
-	depends on CGROUP_TIMER_SLACK && HAS_EARLYSUSPEND
+	depends on CGROUP_TIMER_SLACK && POWERSUSPEND
 	default n
 	help
 	  This feature allows to use different minimal timer slack value
