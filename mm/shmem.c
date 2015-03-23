@@ -811,9 +811,6 @@ static struct page *shmem_swapin(swp_entry_t swap, gfp_t gfp,
 
 	/* Drop reference taken by mpol_shared_policy_lookup() */
 	mpol_cond_put(pvma.vm_policy);
-#ifdef CONFIG_ZSWAP
-	pvma.anon_vma = NULL;
-#endif
 
 	return page;
 }
