@@ -435,6 +435,4 @@ obj-$(CONFIG_MMI_UNIT_INFO) += mmi-unit-info.o
 obj-$(CONFIG_MMI_SOC_INFO) += mmi_soc_info.o
 obj-$(CONFIG_MMI_MSM_PINMUX) += mmi-pinmux.o
 obj-$(CONFIG_PM_DEBUG) += pm_debug.o
-obj-$(CONFIG_FORCE_FAST_CHARGE) += fastchg.o
-
-obj-$(CONFIG_LCD_KCAL) += msm_kcal_ctrl.o
+obj-$(CONFIG_MMI_MSM_CLOCK) += mmi-clock.o

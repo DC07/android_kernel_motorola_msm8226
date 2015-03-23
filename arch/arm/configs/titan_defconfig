@@ -528,6 +528,10 @@ CONFIG_MMI_DEVICE_DTBS=y
 CONFIG_MMI_TITAN_DTB=y
 # CONFIG_MMI_PEREGRINE_DTB is not set
 CONFIG_MMI_MSM_PINMUX=y
+<<<<<<< HEAD
+=======
+CONFIG_MMI_MSM_CLOCK=y
+>>>>>>> parent of d0ac2de... USB Fast Charging
 
 #
 # System MMU
