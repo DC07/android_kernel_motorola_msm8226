@@ -325,7 +325,7 @@
 			};
 
 			pm8226_torch: qcom,flash_torch {
-				qcom,current = <180>;
+				qcom,current = <200>;
 			};
 		};
 
