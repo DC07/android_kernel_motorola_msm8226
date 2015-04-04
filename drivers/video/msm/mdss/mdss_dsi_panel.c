@@ -740,6 +740,13 @@ static int mdss_dsi_quickdraw_check_panel_state(struct mdss_panel_data *pdata,
 	return ret;
 }
 
+#ifdef CONFIG_TOUCHSCREEN_SWEEP2WAKE
+extern bool s2w_scr_suspended;
+#endif
+#ifdef CONFIG_TOUCHSCREEN_DOUBLETAP2WAKE
+extern bool dt2w_scr_suspended;
+#endif
+
 static int mdss_dsi_panel_on(struct mdss_panel_data *pdata)
 {
 	struct mipi_panel_info *mipi;
@@ -854,6 +861,12 @@ end:
 
 	pr_info("%s-. Pwr_mode(0x0A) = 0x%x\n", __func__, pwr_mode);
 
+#ifdef CONFIG_TOUCHSCREEN_SWEEP2WAKE
+       s2w_scr_suspended = false;
+#endif
+#ifdef CONFIG_TOUCHSCREEN_DOUBLETAP2WAKE
+       dt2w_scr_suspended = false;
+#endif
 	return 0;
 }
 
@@ -915,6 +928,12 @@ disable_regs:
 
 	pr_info("%s-:\n", __func__);
 
+#ifdef CONFIG_TOUCHSCREEN_SWEEP2WAKE
+       s2w_scr_suspended = true;
+#endif
+#ifdef CONFIG_TOUCHSCREEN_DOUBLETAP2WAKE
+       dt2w_scr_suspended = true;
+#endif
 	return 0;
 }
 
