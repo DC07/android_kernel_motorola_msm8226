@@ -436,8 +436,5 @@ obj-$(CONFIG_MMI_SOC_INFO) += mmi_soc_info.o
 obj-$(CONFIG_MMI_MSM_PINMUX) += mmi-pinmux.o
 obj-$(CONFIG_PM_DEBUG) += pm_debug.o
 obj-$(CONFIG_MMI_MSM_CLOCK) += mmi-clock.o
-<<<<<<< HEAD
-
 obj-$(CONFIG_MSM_HOTPLUG) += msm_hotplug.o
-=======
->>>>>>> parent of d4e906e...  USB forced fast charge v2
+

@@ -3184,7 +3184,6 @@ config PM_DEBUG_WAKEUP
     default n
     bool "Report wakeup source in a uevent"
 
-<<<<<<< HEAD
 config MSM_HOTPLUG
 	bool "MSM hotplug driver"
 	depends on HOTPLUG_CPU
@@ -3192,6 +3191,4 @@ config MSM_HOTPLUG
 	help
 	  The MSM hotplug driver controls on-/offlining of additional cores based
 	  on current cpu load.
-=======
->>>>>>> parent of d4e906e...  USB forced fast charge v2
 endif
