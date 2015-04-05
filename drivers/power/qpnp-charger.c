@@ -821,7 +821,7 @@ qpnp_chg_idcmax_set(struct qpnp_chg_chip *chip, int mA)
 
 #ifdef CONFIG_FORCE_FAST_CHARGE
         if (force_fast_charge >= 1))
-        	dc = 2000 / QPNP_CHG_I_MAXSTEP_MA;
+        	dc = fast_charge_level / QPNP_CHG_I_MAXSTEP_MA;
         else
         	dc = mA / QPNP_CHG_I_MAXSTEP_MA;
 #else
@@ -904,7 +904,7 @@ qpnp_chg_iusbmax_set(struct qpnp_chg_chip *chip, int mA)
 	/* Impose input current limit */
 #ifdef CONFIG_FORCE_FAST_CHARGE
 	 if (force_fast_charge >= 1) {
-	 	mA = 2000;
+	 	mA = fast_charge_level;
 	 	if (chip->maxinput_usb_ma)
 	 	mA = (chip->maxinput_usb_ma) <=
 	 		mA ? chip->maxinput_usb_ma : mA;
@@ -3862,9 +3862,7 @@ qpnp_chg_reduce_power_stage(struct qpnp_chg_chip *chip)
 			USB_peripheral_detected == USB_ACC_NOT_DETECTED ))  {
 	 	usb_ma_above_wall = true;
 	 } else
-               usb_ma_above_wall =
-	 	qpnp_chg_usb_iusbmax_get(chip) > 
-USB_WALL_THRESHOLD_MA;
+	 	qpnp_chg_usb_iusbmax_get(chip) > USB_WALL_THRESHOLD_MA;
 #endif
 	if (fast_chg
 		&& usb_present
