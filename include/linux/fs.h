@@ -1508,18 +1508,15 @@ struct super_block {
 
 	/* Being remounted read-only */
 	int s_readonly_remount;
-<<<<<<< HEAD
 
 	/*
 	 * Indicates how deep in a filesystem stack this SB is
 	 */
 	int s_stack_depth;
-=======
 #ifdef CONFIG_ASYNC_FSYNC
 #define FLAG_ASYNC_FSYNC        0x1
 	unsigned int fsync_flags;
 #endif
->>>>>>> 7b26e62... Asynchronous Fsync: initial extraction of Async Fsync from HTC
 };
 
 /* superblock cache pruning functions */
