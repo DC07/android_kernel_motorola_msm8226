@@ -40,7 +40,6 @@
 #include <linux/slab.h>
 #include <linux/syscore_ops.h>
 #include <linux/power/pm_debug.h>
-#include <linux/wakeup_reason.h>
 #include <asm/irq.h>
 #include <asm/exception.h>
 #include <asm/smp_plat.h>
