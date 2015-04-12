@@ -26,7 +26,6 @@
 #include <linux/platform_device.h>
 #include <linux/slab.h>
 #include <linux/power/pm_debug.h>
-#include <linux/wakeup_reason.h>
 #include <asm/mach/irq.h>
 
 #include <mach/msm_iomap.h>
