@@ -947,7 +947,7 @@ static int fsp_set_input_params(struct psmouse *psmouse)
 	return 0;
 }
 
-int fsp_detect(struct psmouse *psmouse, bool set_properties)
+static int fsp_detect(struct psmouse *psmouse, bool set_properties)
 {
 	int id;
 
