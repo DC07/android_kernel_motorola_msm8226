@@ -3,7 +3,7 @@
 # Linux/arm 3.4.106 Kernel Configuration
 #
 # Spirit Configs
-CONFIG_LOCALVERSION="-Spirit.Kernel-r12"
+CONFIG_LOCALVERSION="-Spirit.Kernel-r13"
 CONFIG_MSM_LIMITER=y
 CONFIG_SOUND_CONTROL_HAX_3_GPL=y
 CONFIG_IOSCHED_FIOPS=y
